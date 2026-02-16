@@ -8,36 +8,34 @@ Customize this file with your specific keywords and settings
 LEAD_CONFIG = {
     # Keywords to search for
     "keywords": [
-        "plumbers near me",
-        "digital marketing agency",
+        "roofing companies",
+        "roofers",
         "real estate agents",
-        "restaurants",
-        "coffee shops"
+        "home owners",
+        "roof repair",
+        "roof rejuvenation",
+        "roof coating",
     ],
-    
     # Location to search in
     "location": "New York, NY",
-    
     # Which APIs to use (comment out any you don't want to use)
     "apis": [
-        'openstreetmap',  # Free, no API key needed
-        'serpapi',        # 100 searches/month free
-        'zenserp',        # 50 searches/month free
-        'dataforseo',     # Paid, credit-based
-        'foursquare',     # Free tier available
+        "openstreetmap",  # Free, no API key needed
+        "serpapi",  # 100 searches/month free
+        "zenserp",  # 50 searches/month free
+        "dataforseo",  # Paid, credit-based
+        "foursquare",  # Free tier available
     ],
-    
     # Export settings
     "export": {
         "format": ["json", "csv"],  # Export formats
-        "deduplicate": True,         # Remove duplicates before export
+        "deduplicate": True,  # Remove duplicates before export
     },
-    
     # Rate limiting (seconds between API calls)
     "rate_limit": {
-        "default": 1,      # Default delay between calls
+        "default": 1,  # Default delay between calls
         "openstreetmap": 1.5,  # OSM requires respectful rate limiting
-    }
+    },
 }
 
 
@@ -49,9 +47,9 @@ MULTI_LOCATION_CONFIG = {
         "Los Angeles, CA",
         "Chicago, IL",
         "Houston, TX",
-        "Phoenix, AZ"
+        "Phoenix, AZ",
     ],
-    "apis": ['foursquare', 'openstreetmap']
+    "apis": ["foursquare", "openstreetmap"],
 }
 
 
@@ -63,12 +61,11 @@ INDUSTRY_CONFIGS = {
             "property management companies",
             "real estate brokers",
             "commercial real estate",
-            "residential real estate"
+            "residential real estate",
         ],
         "location": "Miami, FL",
-        "apis": ['serpapi', 'dataforseo']
+        "apis": ["serpapi", "dataforseo"],
     },
-    
     "home_services": {
         "keywords": [
             "plumbers",
@@ -76,47 +73,44 @@ INDUSTRY_CONFIGS = {
             "HVAC contractors",
             "roofing companies",
             "landscapers",
-            "general contractors"
+            "general contractors",
         ],
         "location": "Austin, TX",
-        "apis": ['serpapi', 'openstreetmap', 'foursquare']
+        "apis": ["serpapi", "openstreetmap", "foursquare"],
     },
-    
     "healthcare": {
         "keywords": [
             "dentists",
             "chiropractors",
             "physical therapy",
             "urgent care",
-            "medical clinics"
+            "medical clinics",
         ],
         "location": "Seattle, WA",
-        "apis": ['serpapi', 'foursquare']
+        "apis": ["serpapi", "foursquare"],
     },
-    
     "restaurants": {
         "keywords": [
             "restaurants",
             "cafes",
             "food trucks",
             "catering services",
-            "bakeries"
+            "bakeries",
         ],
         "location": "Portland, OR",
-        "apis": ['foursquare', 'openstreetmap']
+        "apis": ["foursquare", "openstreetmap"],
     },
-    
     "professional_services": {
         "keywords": [
             "law firms",
             "accounting firms",
             "marketing agencies",
             "consulting firms",
-            "financial advisors"
+            "financial advisors",
         ],
         "location": "Boston, MA",
-        "apis": ['serpapi', 'dataforseo']
-    }
+        "apis": ["serpapi", "dataforseo"],
+    },
 }
 
 

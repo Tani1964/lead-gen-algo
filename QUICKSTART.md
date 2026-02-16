@@ -35,6 +35,7 @@ python lead-gen-script.py
 ```
 
 The default script will search for:
+
 - plumbers near me
 - digital marketing agency
 - real estate agents
@@ -64,6 +65,7 @@ apis_to_use = ['openstreetmap', 'foursquare']  # Start with free ones
 ## Step 5: View Results
 
 After running, you'll get:
+
 - `leads_TIMESTAMP.json` - Full lead data
 - `leads_TIMESTAMP.csv` - Spreadsheet format
 - Console summary of results
@@ -112,24 +114,26 @@ gen.export_to_json("coffee_shops.json")
 
 ## Where to Get API Keys (Free Tiers)
 
-| API | Sign Up Link | Free Tier |
-|-----|-------------|-----------|
-| SerpAPI | https://serpapi.com/users/sign_up | 100 searches/month |
-| Zenserp | https://app.zenserp.com/register | 50 searches/month |
-| Foursquare | https://foursquare.com/developers/signup | 950 calls/day |
-| ScraperAPI | https://www.scraperapi.com/signup | 1,000 requests/month |
-| DataForSEO | https://app.dataforseo.com/register | $1 free trial credit |
+| API        | Sign Up Link                             | Free Tier            |
+| ---------- | ---------------------------------------- | -------------------- |
+| SerpAPI    | https://serpapi.com/users/sign_up        | 100 searches/month   |
+| Zenserp    | https://app.zenserp.com/register         | 50 searches/month    |
+| Foursquare | https://foursquare.com/developers/signup | 950 calls/day        |
+| ScraperAPI | https://www.scraperapi.com/signup        | 1,000 requests/month |
+| DataForSEO | https://app.dataforseo.com/register      | $1 free trial credit |
 
 **OpenStreetMap** requires no API key! ✨
 
 ## Troubleshooting
 
 ### No results?
+
 - Make sure your keywords are specific
 - Try a different location
 - Check if API keys are set correctly
 
 ### "API key not configured" warning?
+
 ```bash
 # Check your environment variable
 echo $SERPAPI_KEY
@@ -138,6 +142,7 @@ echo $SERPAPI_KEY
 ```
 
 ### Rate limit errors?
+
 - Add more delay: edit `time.sleep(1)` to `time.sleep(2)` in the script
 - Use fewer APIs at once
 - Spread searches over time

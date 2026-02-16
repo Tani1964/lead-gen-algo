@@ -81,6 +81,7 @@ load_dotenv()
 ```
 
 Install python-dotenv:
+
 ```bash
 pip install python-dotenv
 ```
@@ -180,14 +181,14 @@ Flattened structure with all fields as columns. Nested objects are converted to 
 
 ## API Rate Limits & Costs
 
-| API | Free Tier | Rate Limit | Notes |
-|-----|-----------|------------|-------|
-| SerpAPI | 100 searches/month | No strict limit | Paid plans available |
-| Zenserp | 50 searches/month | No strict limit | Paid plans available |
-| DataForSEO | 100 searches/month | No strict limit | Credit-based system |
-| ScraperAPI | 1,000 requests/month | 5 req/sec | Paid plans available |
-| OpenStreetMap | Free | 1 req/sec | Must use User-Agent |
-| Foursquare | Free tier available | 950 calls/day | Places API |
+| API           | Free Tier            | Rate Limit      | Notes                |
+| ------------- | -------------------- | --------------- | -------------------- |
+| SerpAPI       | 100 searches/month   | No strict limit | Paid plans available |
+| Zenserp       | 50 searches/month    | No strict limit | Paid plans available |
+| DataForSEO    | 100 searches/month   | No strict limit | Credit-based system  |
+| ScraperAPI    | 1,000 requests/month | 5 req/sec       | Paid plans available |
+| OpenStreetMap | Free                 | 1 req/sec       | Must use User-Agent  |
+| Foursquare    | Free tier available  | 950 calls/day   | Places API           |
 
 **Important**: Always check the latest pricing and limits on each provider's website.
 
@@ -205,6 +206,7 @@ Flattened structure with all fields as columns. Nested objects are converted to 
 ### "API key not configured" warnings
 
 Make sure you've set the environment variables correctly:
+
 ```bash
 echo $SERPAPI_KEY  # Should print your key
 ```
@@ -272,7 +274,7 @@ Use ScraperAPI to extract email and phone numbers from websites:
 def extract_contacts(url):
     import re
     from bs4 import BeautifulSoup
-    
+
     result = generator.scrape_with_scraperapi(url)
     if result:
         soup = BeautifulSoup(result['html'], 'html.parser')
@@ -292,15 +294,15 @@ def save_to_database(leads):
     conn = sqlite3.connect('leads.db')
     c = conn.cursor()
     c.execute('''CREATE TABLE IF NOT EXISTS leads
-                 (id INTEGER PRIMARY KEY, source TEXT, title TEXT, 
+                 (id INTEGER PRIMARY KEY, source TEXT, title TEXT,
                   link TEXT, keyword TEXT, timestamp TEXT)''')
-    
+
     for lead in leads:
         c.execute("INSERT INTO leads VALUES (NULL,?,?,?,?,?)",
-                 (lead.get('source'), lead.get('title'), 
-                  lead.get('link'), lead.get('keyword'), 
+                 (lead.get('source'), lead.get('title'),
+                  lead.get('link'), lead.get('keyword'),
                   lead.get('timestamp')))
-    
+
     conn.commit()
     conn.close()
 ```
@@ -320,6 +322,7 @@ This script is provided as-is for educational and commercial use.
 ## Support
 
 For issues or questions:
+
 1. Check API documentation for each service
 2. Verify your API keys and quotas
 3. Review error messages in the console output

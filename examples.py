@@ -6,6 +6,14 @@ Run specific functions based on your needs
 
 import sys
 import os
+
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv not installed, will use system environment variables
+
 from lead_gen_script import LeadGenerator
 
 

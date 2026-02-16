@@ -7,6 +7,14 @@ Run this before using the main lead generation script
 import os
 import sys
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    print("📄 Loading .env file...")
+except ImportError:
+    print("⚠️  python-dotenv not installed, using system environment variables only")
+
 
 def check_python_version():
     """Check if Python version is adequate"""

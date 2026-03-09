@@ -3,35 +3,35 @@ name: Weekly Keepa Script
 on:
   schedule:
     # Run every Sunday at 00:00 UTC
-    - cron: '0 0 * * 0'
-  workflow_dispatch:  # Allow manual trigger
+    - cron: "0 0 * * 0"
+  workflow_dispatch: # Allow manual trigger
 
 jobs:
   run-keepa:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
-      
+          python-version: "3.11"
+          cache: "pip"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install keepa pandas colorama tabulate
-      
-      - name: Run keepa.py
+
+      - name: Run keepa product finder
         env:
           KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
           SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
-        run: python keepa.py
-      
+        run: python keepa_product_finder.py
+
       - name: Upload results
         if: always()
         uses: actions/upload-artifact@v4

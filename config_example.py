@@ -16,8 +16,16 @@ LEAD_CONFIG = {
         "roof rejuvenation",
         "roof coating",
     ],
-    # Location to search in
-    "location": "New York, NY",
+    # Locations to search in (list of towns/cities in Texas)
+    "locations": [
+        "Pflugerville, TX",
+        "Hutto, TX",
+        "Taylor, TX",
+        "Manor, TX",
+        "Elgin, TX",
+        "Georgetown, TX",
+        "Austin, TX",
+    ],
     # Which APIs to use (comment out any you don't want to use)
     "apis": [
         "openstreetmap",  # Free, no API key needed

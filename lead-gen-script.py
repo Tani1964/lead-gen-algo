@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Lead Generation Script
@@ -52,20 +51,25 @@ class LeadGenerator:
 
     def enrich_leads_with_phone(self, max_to_enrich=10):
         """For each lead with a link and no phone, try to extract phone numbers from the website.
-        Only process the first `max_to_enrich` leads and skip known problematic domains."""
-        print(f"\n🔎 Enriching up to {max_to_enrich} leads with phone numbers from business websites...")
+        Only process the first `max_to_enrich` leads and skip known problematic domains.
+        """
+        print(
+            f"\n🔎 Enriching up to {max_to_enrich} leads with phone numbers from business websites..."
+        )
         updated = 0
         processed = 0
         skip_domains = ["yelp.com", "angi.com", "bbb.org", "youtube.com"]
         for lead in self.leads:
             if processed >= max_to_enrich:
                 break
-            if 'phone' not in lead or not lead.get('phone'):
-                url = lead.get('link')
+            if "phone" not in lead or not lead.get("phone"):
+                url = lead.get("link")
                 if url and not any(domain in url for domain in skip_domains):
                     contacts = self.extract_contacts(url)
-                    if contacts['phones']:
-                        lead['phone'] = contacts['phones'][0]  # Take the first found phone number
+                    if contacts["phones"]:
+                        lead["phone"] = contacts["phones"][
+                            0
+                        ]  # Take the first found phone number
                         updated += 1
                 processed += 1
         print(f"✓ Added phone numbers to {updated} leads from website scraping.")
@@ -558,7 +562,10 @@ def main():
     # Use LEAD_CONFIG if available, otherwise fallback to hardcoded values
     if LEAD_CONFIG:
         keywords = LEAD_CONFIG.get("keywords", [])
-        location = LEAD_CONFIG.get("location", "United States")
+        locations = LEAD_CONFIG.get("locations")
+        if not locations:
+            # fallback to single location string for backward compatibility
+            locations = [LEAD_CONFIG.get("location", "United States")]
         apis_to_use = LEAD_CONFIG.get(
             "apis", ["openstreetmap", "serpapi", "zenserp", "dataforseo", "foursquare"]
         )
@@ -570,7 +577,7 @@ def main():
             "restaurants",
             "coffee shops",
         ]
-        location = "New York, NY"
+        locations = ["New York, NY"]
         apis_to_use = [
             "openstreetmap",
             "serpapi",
@@ -580,11 +587,17 @@ def main():
         ]
 
     print(f"🎯 Keywords: {', '.join(keywords)}")
-    print(f"📍 Location: {location}")
+    print(f"📍 Locations: {', '.join(locations)}")
     print(f"🔧 APIs: {', '.join(apis_to_use)}\n")
 
-    # Generate leads
-    generator.generate_leads(keywords=keywords, location=location, use_apis=apis_to_use)
+    # Generate leads for each keyword-location pair
+    all_leads = []
+    for location in locations:
+        leads = generator.generate_leads(
+            keywords=keywords, location=location, use_apis=apis_to_use
+        )
+        all_leads.extend(leads)
+    generator.leads = all_leads
 
     # Deduplicate
     generator.deduplicate_leads()

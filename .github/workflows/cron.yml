@@ -28,7 +28,9 @@ jobs:
       - name: Run keepa product finder
         env:
           KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
-          SERP_API_KEY: ${{ secrets.SERP_API_KEY }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+          API_HOST: ${{ secrets.API_HOST }}
         run: python keepa_product_finder.py
 
       - name: Upload results

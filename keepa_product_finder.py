@@ -48,16 +48,21 @@ def get_candidates_rapid(query, page):
         for p in products:
             try:
                 # Clean price string to float
-                price_str = (
-                    str(p.get("product_price", "0")).replace("$", "").replace(",", "")
-                )
+                price_raw = p.get("product_price") or "0"
+                if price_raw is None:
+                    continue
+                price_str = str(price_raw).replace("$", "").replace(",", "").strip()
+                if not price_str or price_str == "None":
+                    continue
                 price = float(price_str)
-                reviews = p.get("product_num_ratings", 0)
+                reviews = p.get("product_num_ratings") or 0
+                if reviews is None:
+                    reviews = 0
 
                 # YOUR ALGORITHM FILTERS
                 if (20 <= price <= 60) and (50 <= reviews <= 300):
                     candidates.append(p)
-            except:
+            except (ValueError, AttributeError, TypeError) as e:
                 continue
         return candidates
     except Exception as e:
